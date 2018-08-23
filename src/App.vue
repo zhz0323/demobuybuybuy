@@ -115,12 +115,50 @@
 </template>
 
 <script>
+// 引入jquery
+import $ from "jquery";
 export default {
   name: "app"
 };
+// 插件的代码
+$(document).ready(function() {
+  $("#menu2 li a").wrapInner('<span class="out"></span>');
+  $("#menu2 li a").each(function() {
+    $('<span class="over">' + $(this).text() + "</span>").appendTo(this);
+  });
+
+  $("#menu2 li a").hover(
+    function() {
+      $(".out", this)
+        .stop()
+        .animate({ top: "48px" }, 300); // move down - hide
+      $(".over", this)
+        .stop()
+        .animate({ top: "0px" }, 300); // move down - show
+    },
+    function() {
+      $(".out", this)
+        .stop()
+        .animate({ top: "0px" }, 300); // move up - show
+      $(".over", this)
+        .stop()
+        .animate({ top: "-48px" }, 300); // move up - hide
+    }
+  );
+});
 </script>
 
-// 引入css样式
+
 <style>
-@import url('./assets/statics/site/css/style.css');
+/* 头部和尾部的样式 */
+@import url("./assets/statics/site/css/style.css");
+/*引入jquery插件的样式*/
+@import url("./assets/lib/css/style.css");
+/* 去掉插件自带的背景图片 */
+#menu2{
+    background-image: none;
+}
+#menu2 ul li a.router-link-exact-active{
+    color: #fff;
+}
 </style>
