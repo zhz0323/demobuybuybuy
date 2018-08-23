@@ -1,7 +1,7 @@
 <template>
 <div>
     <!-- 头部代码 -->
-  <div class="header">
+    <div class="header">
         <!-- 1.0 导航栏头部 -->
         <div class="head-top">
             <div class="section">
@@ -37,9 +37,11 @@
                 <div id="menu2" class="nav-box menuhd">
                     <ul>
                         <li class="index">
-                            <a href="#" class="">
+                            <router-link to="/index">
+                            <!-- <a href="#" class=""> -->
                                 <span class="out" style="top: 0px;">首页</span>
-                            </a>
+                            <!-- </a> -->
+                            </router-link>
                         </li>
                         <li class="news">
                             <a href="#" class="">
@@ -79,6 +81,8 @@
             </div>
         </div>
     </div>
+    <!-- 路由出口 -->
+    <router-view></router-view>
     <!-- 底部代码 -->
     <div class="footer">
         <div class="section">
@@ -118,10 +122,10 @@
 // 引入jquery
 import $ from "jquery";
 export default {
-  name: "app"
+  name: "container"
 };
 // 插件的代码
-$(document).ready(function() {
+$(function() {
   $("#menu2 li a").wrapInner('<span class="out"></span>');
   $("#menu2 li a").each(function() {
     $('<span class="over">' + $(this).text() + "</span>").appendTo(this);
@@ -148,7 +152,6 @@ $(document).ready(function() {
 });
 </script>
 
-
 <style>
 /* 头部和尾部的样式 */
 @import url("./assets/statics/site/css/style.css");
@@ -160,5 +163,8 @@ $(document).ready(function() {
 }
 #menu2 ul li a.router-link-exact-active{
     color: #fff;
+}
+body{
+    background-color: transparent;
 }
 </style>
